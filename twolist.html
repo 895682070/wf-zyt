@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>小组管理</title>
+    <!-- 包含头部信息用于适应不同设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 包含 bootstrap 样式表 -->
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./manage.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column" id="toptital">
+                <div class="jumbotron" style="background-image: url(主页背景图.png);">
+                    <h1 id="title-word">自傲组管理</h1>
+                </div>
+                <div class="col-md-3 column ">
+
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="menu">
+                                            实验配方
+                                            </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+
+                                <div class="panel-body" id="menu2">
+                                    <a href="#addpeifang" id="sidea">
+                                        添加配方
+                                    </a>
+                                </div>
+
+                                <div class="panel-body" id="menu2">
+                                    <a href="#showpeifang" id="sidea">
+                                        配方展示
+                                   </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="menu">
+                                            实验记录
+                                        </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+
+                                <div class="panel-body" id="menu2">
+                                    <a href="#showjilu" id="sidea">
+                                        实验记录管理
+                                   </a>
+                                </div>
+
+
+                                <div class="panel-body" id="menu2">
+                                    <a href="#" id="sidea">
+                                        实验记录展示
+                                   </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" id="menu">
+                                        实验器材
+                                            </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+
+                                <div class="panel-body" id="menu2">
+                                    <a href="#" id="sidea">
+                                        器材管理
+                                    </a>
+                                </div>
+
+
+                                <div class="panel-body" id="menu2">
+                                    <a href="#" id="sidea">
+                                        器材展示
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" id="menu">
+                                        人员
+                                            </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse">
+
+                                <div class="panel-body" id="menu2">
+                                    <a href="#" id="sidea">
+                                        人员管理
+                                    </a>
+                                </div>
+
+
+                                <div class="panel-body" id="menu2">
+                                    <a href="#" id="sidea">
+                                        人员展示
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9 column" id="right">
+
+                    <div id="showpeifang">
+                        <table class="table table-bordered table-hover ">
+                            <thead>
+                                <tr>
+                                    <th>配方名称 </th>
+                                    <th>操作 </th>
+                                    <th>用时 </th>
+                                    <th>预期现象 </th>
+                                    <th>操作 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>制作双氧水配方 </td>
+                                    <td>加入水10ml </td>
+                                    <td>2分钟 </td>
+                                    <td>水多了 </td>
+                                    <td>
+                                        <div class="btn-group btn-group-xs">
+                                            <button class="btn btn-default" type="button"><em class="align-left"></em> 编辑</button>
+                                            <button class="btn btn-default" type="button"><em class="align-center"></em> 删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="success ">
+                                    <td>制作双氧水配方 </td>
+                                    <td>加入水10ml </td>
+                                    <td>2分钟 </td>
+                                    <td>水多了 </td>
+                                    <td>
+                                        <div class="btn-group btn-group-xs">
+                                            <button class="btn btn-default" type="button"><em class="align-left"></em> 编辑</button>
+                                            <button class="btn btn-default" type="button"><em class="align-center"></em> 删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="error ">
+                                    <td>制作双氧水配方 </td>
+                                    <td>加入水10ml </td>
+                                    <td>2分钟 </td>
+                                    <td>水多了 </td>
+                                    <td>
+                                        <div class="btn-group btn-group-xs">
+                                            <button class="btn btn-default" type="button"><em class="align-left"></em> 编辑</button>
+                                            <button class="btn btn-default" type="button"><em class="align-center"></em> 删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="warning ">
+                                    <td>制作双氧水配方 </td>
+                                    <td>加入水10ml </td>
+                                    <td>2分钟 </td>
+                                    <td>水多了 </td>
+                                    <td>
+                                        <div class="btn-group btn-group-xs">
+                                            <button class="btn btn-default" type="button"><em class="align-left"></em> 编辑</button>
+                                            <button class="btn btn-default" type="button"><em class="align-center"></em> 删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="info ">
+                                    <td>制作双氧水配方 </td>
+                                    <td>加入水10ml </td>
+                                    <td>2分钟 </td>
+                                    <td>水多了 </td>
+                                    <td>
+                                        <div class="btn-group btn-group-xs">
+                                            <button class="btn btn-default" type="button"><em class="align-left"></em> 编辑</button>
+                                            <button class="btn btn-default" type="button"><em class="align-center"></em> 删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="showjilu">
+                        <table class="table table-bordered table-hover ">
+                            <thead>
+                                <tr>
+                                    <th>日期 </th>
+                                    <th>实验名称 </th>
+                                    <th>配方名称 </th>
+                                    <th>实验人员 </th>
+                                    <th>材料器械 </th>
+                                    <th>实验结果 </th>
+                                    <th>实验总结 </th>
+                                    <th>操作 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-4-6 </td>
+                                    <td>制作双氧水配方 </td>
+                                    <td>制作双氧水 </td>
+                                    <td>王蕾 </td>
+                                    <td>烧杯、50ml试管 </td>
+                                    <td>成功 </td>
+                                    <td>配方准确 </td>
+                                    <td>
+                                        <div class="btn-group btn-group-xs">
+                                            <button class="btn btn-default" type="button"><em class="align-left"></em> 编辑</button>
+                                            <button class="btn btn-default" type="button"><em class="align-center"></em> 删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="success ">
+                                    <td>2022-4-6 </td>
+                                    <td>制作双氧水配方 </td>
+                                    <td>制作双氧水 </td>
+                                    <td>王蕾 </td>
+                                    <td>烧杯、50ml试管 </td>
+                                    <td>成功 </td>
+                                    <td>配方准确 </td>
+                                    <td>
+                                        <div class="btn-group btn-group-xs">
+                                            <button class="btn btn-default" type="button"><em class="align-left"></em> 编辑</button>
+                                            <button class="btn btn-default" type="button"><em class="align-center"></em> 删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="error ">
+                                    <td>2022-4-6 </td>
+                                    <td>制作双氧水配方 </td>
+                                    <td>制作双氧水 </td>
+                                    <td>王蕾 </td>
+                                    <td>烧杯、50ml试管 </td>
+                                    <td>成功 </td>
+                                    <td>配方准确 </td>
+                                    <td>
+                                        <div class="btn-group btn-group-xs">
+                                            <button class="btn btn-default" type="button"><em class="align-left"></em> 编辑</button>
+                                            <button class="btn btn-default" type="button"><em class="align-center"></em> 删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="warning ">
+                                    <td>2022-4-6 </td>
+                                    <td>制作双氧水配方 </td>
+                                    <td>制作双氧水 </td>
+                                    <td>王蕾 </td>
+                                    <td>烧杯、50ml试管 </td>
+                                    <td>成功 </td>
+                                    <td>配方准确 </td>
+                                    <td>
+                                        <div class="btn-group btn-group-xs">
+                                            <button class="btn btn-default" type="button"><em class="align-left"></em> 编辑</button>
+                                            <button class="btn btn-default" type="button"><em class="align-center"></em> 删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="info ">
+                                    <td>2022-4-6 </td>
+                                    <td>制作双氧水配方 </td>
+                                    <td>制作双氧水 </td>
+                                    <td>王蕾 </td>
+                                    <td>烧杯、50ml试管 </td>
+                                    <td>成功 </td>
+                                    <td>配方准确 </td>
+                                    <td>
+                                        <div class="btn-group btn-group-xs">
+                                            <button class="btn btn-default" type="button"><em class="align-left"></em> 编辑</button>
+                                            <button class="btn btn-default" type="button"><em class="align-center"></em> 删除</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="addpeifang">
+                        <div class="alert alert-success alert-dismissable">
+                            <h4>
+                                添加实验配方
+                            </h4>
+                        </div>
+
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="exampleInputText1">配方名称</label><input type="text" class="form-control" id="exampleInputText1" name="step" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputText1">操作</label><input type="text" class="form-control" id="exampleInputText2" name="operation" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputText1">用时</label><input type="text" class="form-control" id="exampleInputText2" name="operation" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputText1">预期现象</label><input type="text" class="form-control" id="exampleInputText2" name="operation" />
+                            </div>
+                            <button type="submit" class="btn btn-default" id="sub1">确定</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- JavaScript 放置在文档最后面可以使页面加载速度更快 -->
+    <!-- 可选: 包含 jQuery 库 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js "></script>
+    <!-- 可选: 合并了 Bootstrap JavaScript 插件 -->
+    <script src="https://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js "></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#right").children().hide();
+            $($("#right").children().get(0)).show();
+            $(".panel-body").click(function() {
+                $(this).css("background", "honeydew");
+                $(this).siblings().css("background-color", "azure");
+                $("#right").children().hide(); 
+                var activeTab = $(this).find("a").attr("href"); //找到所属属性值来识别活跃选项卡和内容 
+                $(activeTab).fadeIn(); //使内容出现
+            });
+
+            //FormData格式的post请求
+            $("#addpeifang").submit(function() {
+                var name = $("#exampleInputEmail1").val();
+                var formData = {};
+                var m = $('#addpeifang').serialize()
+                var t = $('#addpeifang').serializeArray();
+                $.each(t, function() {
+                    formData[this.name] = this.value;
+                });
+                var param = JSON.stringify(formData)
+                alert(JSON.stringify(formData));
+                $.post("http://127.0.0.1:8080/user",
+                    JSON.stringify(formData));
+            });
+        });
+
+        //body为raw-json格式
+        function mypost() {
+            var param = {
+                "username": "qweqr",
+                "password": "wewe"
+            }
+
+            $.ajax({
+                url: 'http://127.0.0.1:8080/user',
+                'data': JSON.stringify({
+                    username: '2222'
+                }),
+                'type': 'POST',
+                'processData': false,
+                'contentType': 'application/json', //typically 'application/x-www-form-urlencoded', but the service you are calling may expect 'text/json'... check with the service to see what they expect as content-type in the HTTP header.
+                success: function(msg) {
+
+                }
+            });
+        }
+
+        //get请求
+        function Get() {
+            var xmlhttp;
+            var Mac, Sn, DeviceId, Model
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var info = xmlhttp.responseText;
+                    // var o = eval("(" + info + ")" + "()");  //用eval()把字符串转换为脚本 
+                    alert("result" + info);
+                    temp = JSON.parse(info);
+                    //alert("result:" + temp.result);
+                    //document.getElementById("mac").innerHTML = "result:" + temp.result;
+                    //document.getElementById("sn").innerHTML = "sn:" + info;
+                }
+            }
+            xmlhttp.open("GET", "http://127.0.0.1:8080/id/1", true);
+            xmlhttp.send();
+
+        }
+
+        //简便get请求
+        function simpleGet() {
+            $.get("http://127.0.0.1:8080/id/1", function call() {
+                //alert("hh")
+            });
+        }
+    </script>
+
+
+
+</body>
+
+</html>

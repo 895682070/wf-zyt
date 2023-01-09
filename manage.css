@@ -45,3 +45,11 @@ body {
 #menu2:hover {
     background-color: honeydew;
 }
+
+
+.upload-file {
+    width: 200px;
+    height: 200px;
+    border: 1px dashed #8590a6;
+    margin-top: 16px;
+}

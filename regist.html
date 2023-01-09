@@ -107,7 +107,7 @@
             // 保存用户
             let users = localStorage.getItem('users')
             if (!users) users = []
-            users = JSON.parse(users)
+            else users = JSON.parse(users)
             // 判断重复
             let exists = users.find(({ username }) => username === formObject['username'])
             if (exists) {

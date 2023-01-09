@@ -25,8 +25,8 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="menu">
-                                            主菜单
-                                            </a>
+                                        主菜单
+                                    </a>
                                 </h4>
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse in">
@@ -40,13 +40,13 @@
                                 <div class="panel-body" id="menu2">
                                     <a href="#showpeifang" id="sidea">
                                         浏览视频
-                                   </a>
+                                    </a>
                                 </div>
 
                                 <div class="panel-body" id="menu2">
                                     <a href="#dingzhi" id="sidea">
                                         定制播放器
-                                   </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -56,37 +56,19 @@
                 <div class="col-md-9 column" id="right">
 
                     <div id="showpeifang">
-                        <video 
-                        id="videowrap"
-                        preload="auto" 
-                        poster="./img/1.png"
-                        width="800"
-                        height="500"
-                        autoplay
-                        controls
-                        controlslist="nodownload nofullscreen noremoteplayback noplaybackrate disablePictureInPicture"
-                        >
-                        <source 
-                        src="http://image.ijobway.com/33_sqsj/video/b5e219f855e2e1375861ecf3df924d22.mp4"
-                        type="video/mp4"
-                        />
-                    </video>
+                        <video id="videowrap" preload="auto" poster="./img/1.png" width="800" height="500" autoplay
+                            controls
+                            controlslist="nodownload nofullscreen noremoteplayback noplaybackrate disablePictureInPicture">
+                            <source src="http://image.ijobway.com/33_sqsj/video/b5e219f855e2e1375861ecf3df924d22.mp4"
+                                type="video/mp4" />
+                        </video>
                     </div>
 
                     <div id="dingzhi">
-                        <video 
-                        id="videowrap"
-                        preload="auto" 
-                        poster="./img/2.png"
-                        width="800"
-                        height="500"
-                        controls
-                        >
-                        <source 
-                        src="http://image.ijobway.com/33_sqsj/video/b5e219f855e2e1375861ecf3df924d22.mp4"
-                        type="video/mp4"
-                        />
-                    </video>
+                        <video id="videowrap" preload="auto" poster="./img/2.png" width="800" height="500" controls>
+                            <source src="http://image.ijobway.com/33_sqsj/video/b5e219f855e2e1375861ecf3df924d22.mp4"
+                                type="video/mp4" />
+                        </video>
                     </div>
 
                     <div id="addpeifang">
@@ -98,17 +80,18 @@
 
                         <form role="form">
                             <div class="form-group">
-                                <label for="exampleInputText1">查找用户</label><input type="text" class="form-control" id="exampleInputText1" name="step" />
+                                <label for="exampleInputText1">查找用户</label><input type="text" class="form-control"
+                                    id="exampleInputText1" name="step" />
                             </div>
 
-                            <div class="person">xxxx</div>
+                            <div id="person">xxxx</div>
 
-                            <button type="submit" class="btn btn-search" id="sub2">查找</button>
-                            <button type="submit" class="btn btn-default" id="sub1" style="display: none;">确定</button>
+                            <button type="button" class="btn btn-search" id="sub2">查找</button>
+                            <button type="button" class="btn btn-default" id="sub1" style="display: none;">确定</button>
 
                             <div class="upload-file" id="upload-file">
                                 <div class="">请拖拽此处上传文件</div>
-                                <input type="file" hidden style="opacity: 0;"/>
+                                <input type="file" hidden style="opacity: 0;" />
                             </div>
 
 
@@ -118,7 +101,6 @@
             </div>
         </div>
     </div>
-    </div>
     <!-- JavaScript 放置在文档最后面可以使页面加载速度更快 -->
     <!-- 可选: 包含 jQuery 库 -->
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js "></script>
@@ -126,24 +108,74 @@
     <script src="https://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js "></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        const blobToDataURL = (blob, cb) => {
+            let reader = new FileReader();
+            reader.onload = function (evt) {
+                let base64 = evt.target.result;
+                cb(base64);
+            };
+            reader.readAsDataURL(blob);
+        }
+
+        $(document).ready(function () {
+            $('#sub2').click(function (e) {
+                let username = $('#exampleInputText1').val()
+                if (!username) {
+                    alert('请输入用户名查询!')
+                    return
+                }
+                console.log('username: ', username)
+                // 查询本地存储
+                let users = localStorage.getItem('users')
+                if (!users) {
+                    alert('该用户不存在!')
+                    return
+                }
+                users = JSON.parse(users)
+                let user = users.find(item => item['username'] === username)
+                if (!user) {
+                    alert('该用户不存在!')
+                    return
+                }
+                console.log('user: ', user)
+                // 回显姓名
+                $('#person').text(user['rename'])
+
+                // 显示sub1
+                $('#sub1').css('display', 'inline-block')
+                $('#sub1').click(function (e) {
+                    console.log('in user:', user)
+                    let file = $('#upload-file input[type=file]').prop("files")[0]
+                    if (!file) {
+                        alert('请上传文件!')
+                        return
+                    }
+                    let url = URL.createObjectURL(file);
+                    let base64 = blobToDataURL(file, (base64Url) => {
+                        // 传给user
+                        user['avatar'] = base64Url
+                        localStorage.setItem('users', JSON.stringify(users))
+                    });
+                })
+            })
+
             $("#right").children().hide();
             $($("#right").children().get(0)).show();
-            $(".panel-body").click(function() {
+            $(".panel-body").click(function () {
                 $(this).css("background", "honeydew");
                 $(this).siblings().css("background-color", "azure");
-                $("#right").children().hide(); 
+                $("#right").children().hide();
                 var activeTab = $(this).find("a").attr("href"); //找到所属属性值来识别活跃选项卡和内容 
                 $(activeTab).fadeIn(); //使内容出现
             });
 
             //FormData格式的post请求
-            $("#addpeifang").submit(function() {
+            $("#addpeifang").submit(function () {
                 var name = $("#exampleInputEmail1").val();
                 var formData = {};
                 var m = $('#addpeifang').serialize()
                 var t = $('#addpeifang').serializeArray();
-                $.each(t, function() {
+                $.each(t, function () {
                     formData[this.name] = this.value;
                 });
                 var param = JSON.stringify(formData)
@@ -154,21 +186,21 @@
 
 
         var div = document.getElementById('upload-file');
-        
-        div.addEventListener("dragenter",function(e){  //拖进
-            e.preventDefault();      
-        })  
-        div.addEventListener("dragover",function(e){  //拖来拖去 
-            e.preventDefault();      
+
+        div.addEventListener("dragenter", function (e) {  //拖进
+            e.preventDefault();
         })
-        div.addEventListener('drop', function(event) {
-            event.preventDefault(); 
+        div.addEventListener("dragover", function (e) {  //拖来拖去 
+            e.preventDefault();
+        })
+        div.addEventListener('drop', function (event) {
+            event.preventDefault();
             // 将类数组对象 转换成数组
             // var fileList = Array.from(event.dataTransfer.files);  //  es6 格式
             var fileList = [].slice.call(event.dataTransfer.files);  // es5 格式
             console.log(fileList)
         })
- 
+
     </script>
 
 

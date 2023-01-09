@@ -1,69 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>注册</title>
+    <html lang="en">
 
-    <link rel="stylesheet" href="./regist.css">
-    <link rel="shortcut icon" href="images/camera.ico">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>注册</title>
 
-<!--表单内容-->
-<div class="reg_back">
-    <div class="reg_left">
-        <p>新用户注册</p>
-        <p>USER REGISTER</p>
-    </div>
-    <div class="reg_center">
-        <div class="reg_form">
-            <form action="#" method="post">
-                <table>
-                    <tr>
-                        <td class="td_left"><label for="username">用户名</label></td>
-                        <td class="td_right"><input type="text" name="username" placeholder="请输入用户名"
-                                                    id="username"></td>
-                    </tr>
-                    <tr>
-                        <td class="td_left"><label for="password">密码</label></td>
-                        <td class="td_right"><input type="password" name="password" placeholder="请输入密码"
-                                                    id="password"></td>
-                    </tr>
-                    <tr>
-                        <td class="td_left"><label for="Email">Email</label></td>
-                        <td class="td_right"><input type="email" name="email" placeholder="请输入Email" id="Email">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td_left"><label for="rename">姓名</label></td>
-                        <td class="td_right"><input type="text" name="rename" placeholder="请输入真实姓名" id="rename">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td_left"><label for="Birthday">出生日期</label></td>
-                        <td class="td_right"><input type="date" name="birthday" id="Birthday"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center"><input type="submit" value="注册" id="btn_sub"></td>
-                    </tr>
-                </table>
-            </form>
+        <link rel="stylesheet" href="./regist.css">
+        <link rel="shortcut icon" href="images/camera.ico">
+    </head>
+
+    <body>
+
+        <!--表单内容-->
+        <div class="reg_back">
+            <div class="reg_left">
+                <p>新用户注册</p>
+                <p>USER REGISTER</p>
+            </div>
+            <div class="reg_center">
+                <div class="reg_form">
+                    <form id="registerForm">
+                        <table>
+                            <tr>
+                                <td class="td_left"><label for="username">用户名</label>
+                                </td>
+                                <td class="td_right">
+                                    <input type="text" name="username" required autocomplete="off" placeholder="请输入用户名"
+                                        id="username">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_left">
+                                    <label for="password">密码</label>
+                                </td>
+                                <td class="td_right">
+                                    <input type="password" name="password" required autocomplete="off"
+                                        placeholder="请输入密码" id="password">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_left">
+                                    <label for="Email">Email</label>
+                                </td>
+                                <td class="td_right">
+                                    <input type="email" name="email" autocomplete="off" placeholder="请输入Email"
+                                        id="Email">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_left">
+                                    <label for="rename">姓名</label>
+                                </td>
+                                <td class="td_right">
+                                    <input type="text" name="rename" autocomplete="off" placeholder="请输入真实姓名"
+                                        id="rename">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_left">
+                                    <label for="Birthday">出生日期</label>
+                                </td>
+                                <td class="td_right">
+                                    <input type="date" autocomplete="off" name="birthday" id="Birthday">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <input type="submit" value="注册" id="btn_sub">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div class="reg_right">
+                <p>已有账号?<a href="login.html">立即登录</a></p>
+            </div>
         </div>
-    </div>
-    <div class="reg_right">
-        <p>已有账号?<a href="login.html">立即登录</a></p>
-    </div>
-</div>
+    </body>
+
+    </html>
 </body>
-</html>
-</body>
+<script src="./jquery.js"></script>
+
+<script>
+    $(function () {
+        $('#registerForm').on('submit', function (e) {
+            event.preventDefault()
+            let formData = $('#registerForm').serializeArray()
+            // 转对象
+            let formObject = {}
+            formData.forEach(({ name, value }) => {
+                formObject[`${name}`] = `${value}`
+            })
+            // 保存用户
+            let users = localStorage.getItem('users')
+            if (!users) users = []
+            users = JSON.parse(users)
+            // 判断重复
+            let exists = users.find(({ username }) => username === formObject['username'])
+            if (exists) {
+                alert('该用户已存在!')
+                return false;
+            }
+            users.push(formObject)
+            localStorage.setItem('users', JSON.stringify(users))
+            alert('注册成功!')
+            return false
+        })
+    })
+</script>
+
 </html>

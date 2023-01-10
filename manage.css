@@ -53,3 +53,7 @@ body {
     border: 1px dashed #8590a6;
     margin-top: 16px;
 }
+.upload-file input {
+    width: 200px;
+    height: 200px;
+}

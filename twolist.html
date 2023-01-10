@@ -116,7 +116,10 @@
                             </div>
                             
 
-                            <div class="show-picture" id="picture_div" >
+                            <a href="./logolist.html" style="margin-top: 16px;">去头像页</a>
+
+
+                            <div class="show-picture" id="picture_div" style="display: none;">
                                 <video id="video" class="picture-video" width="360" height="360" autoplay></video>
                                 <canvas id="canvas" class="picture-canvas" width="360" height="360"></canvas>
                                 <img id="headSculpture">
@@ -124,7 +127,6 @@
                             </div>
 
 
-                            <a href="./logolist.html" style="margin-top: 16px;">去头像页</a>
 
                         </form>
                     </div>
@@ -134,9 +136,6 @@
                         <button id="mapbtn">获取定位</button>
                     </div>
 
-                    <div id="paizhao">
-
-                    </div>
                 </div>
             </div>
         </div>
@@ -261,6 +260,7 @@ function clearCanvas() {
 
                 // 显示sub1
                 $('#sub1').css('display', 'inline-block')
+                $('#picture_div').css('display', 'inline-block')
                 $('#sub1').click(function (e) {
                     console.log('in user:', user)
                     let file = $('#upload-file input[type=file]').prop("files")[0]

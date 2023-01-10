@@ -48,6 +48,15 @@
                                         定制播放器
                                     </a>
                                 </div>
+
+
+                                <div class="panel-body" id="menu2">
+                                    <a href="#mapbox" id="sidea">
+                                        查看地图定位
+                                    </a>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -106,9 +115,27 @@
                                 <input type="file" hidden style="opacity: 0;" />
                             </div>
                             
+
+                            <div class="show-picture" id="picture_div" >
+                                <video id="video" class="picture-video" width="360" height="360" autoplay></video>
+                                <canvas id="canvas" class="picture-canvas" width="360" height="360"></canvas>
+                                <img id="headSculpture">
+                                <button type="button" class="layui-btn layui-btn-normal snap" id="snap">拍照</button>
+                            </div>
+
+
                             <a href="./logolist.html" style="margin-top: 16px;">去头像页</a>
 
                         </form>
+                    </div>
+
+                    <div id="mapbox">
+                        <div id="allmap" style="width:640px;height:640px"></div>
+                        <button id="mapbtn">获取定位</button>
+                    </div>
+
+                    <div id="paizhao">
+
                     </div>
                 </div>
             </div>
@@ -120,6 +147,9 @@
     <!-- 可选: 合并了 Bootstrap JavaScript 插件 -->
     <script src="https://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js "></script>
 
+    <!-- 引入地图 -->
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=lTwIzPXIRAZA9RBaq4WBGhGGZFUMjMQ6"></script>
+
     <script type="text/javascript">
         const blobToDataURL = (blob, cb) => {
             let reader = new FileReader();
@@ -129,6 +159,81 @@
             };
             reader.readAsDataURL(blob);
         }
+
+        //开启摄像头
+var MediaStreamTrack;
+var isPhotograph=true;
+function getMedia() {
+    let constraints = {
+        video: {width: 360, height: 360},
+        audio: false,
+    };
+    //获得video摄像头区域
+    let video = document.getElementById("video");
+    //这里介绍新的方法，返回一个 Promise对象
+    // 这个Promise对象返回成功后的回调函数带一个 MediaStream 对象作为其参数
+    // then()是Promise对象里的方法
+    // then()方法是异步执行，当then()前的方法执行完后再执行then()内部的程序
+    // 避免数据没有获取到
+    let promise = navigator.mediaDevices.getUserMedia(constraints);
+    promise.then(function (MediaStream) {
+   	MediaStreamTrack=typeof MediaStream.stop==='function'?MediaStream:MediaStream.getTracks()[1];
+    video.srcObject = MediaStream;
+         video.play();
+         isPhotograph = false
+     });
+ }
+//拍照
+function takePhoto() {
+	if(isPhotograph){
+		getMedia();
+		clearCanvas();
+		isPhotograph=false;
+	}else{
+        let users = localStorage.getItem('users')
+        if (!users) {
+                    alert('该用户不存在!')
+                    return
+                }
+                users = JSON.parse(users)
+                let username = $('#exampleInputText1').val()
+                if (!username) {
+                    alert('请输入用户名查询!')
+                    return
+                }
+                let user = users.find(item => item['username'] === username)
+                if (!user) {
+                    alert('该用户不存在!')
+                    return
+                }
+		//获得Canvas对象
+	    let video = document.getElementById("video");
+	    let canvas = document.getElementById("canvas");
+	    let ctx = canvas.getContext('2d');
+	    ctx.drawImage(video, 0, 0,360, 360);
+	    MediaStreamTrack && MediaStreamTrack.stop();
+	    imgData = document.getElementById("canvas").toDataURL("image/jpeg");
+        console.log('cccc', imgData);
+        user['avatar'] = imgData
+        localStorage.setItem('users', JSON.stringify(users))
+	    isPhotograph=true;
+        alert('拍照上传成功')
+	}
+}
+
+document.getElementById("snap").addEventListener("click", takePhoto);
+/**
+ * @description 重置canvas（清除照片）
+ * @version 1.0
+ * @returns
+ */
+function clearCanvas() {
+	var c = document.getElementById("canvas");
+	var cxt = c.getContext("2d");
+	c.height = c.height;
+}
+
+
 
         $(document).ready(function () {
             $('#sub2').click(function (e) {
@@ -173,6 +278,27 @@
                 })
             })
 
+
+            $('#mapbtn').click(function(e) {
+                var map = new BMap.Map("allmap");
+                var point = new BMap.Point(116.331398, 39.897445);
+                map.centerAndZoom(point, 12);
+
+                var geolocation = new BMap.Geolocation();
+                geolocation.getCurrentPosition(function (r) {
+                    if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                        var mk = new BMap.Marker(r.point);
+                        map.addOverlay(mk);
+                        map.panTo(r.point);
+                        alert('您的位置：' + r.point.lng + ',' + r.point.lat);
+                    }
+                    else {
+                        alert('failed' + this.getStatus());
+                    }
+                })
+            });
+
+
             $("#right").children().hide();
             $($("#right").children().get(0)).show();
             $(".panel-body").click(function () {
@@ -214,6 +340,7 @@
             var fileList = [].slice.call(event.dataTransfer.files);  // es5 格式
             console.log(fileList)
         })
+
 
     </script>
 
